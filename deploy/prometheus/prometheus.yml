@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "routewise-gateway"
+    metrics_path: /metrics
+    dns_sd_configs:
+      - names:
+          - "gateway"
+        type: "A"
+        port: 8000
+    scrape_interval: 5s

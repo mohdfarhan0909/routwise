@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_DB: routewise_test
+          POSTGRES_USER: routewise
+          POSTGRES_PASSWORD: testpass
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        working-directory: gateway
+        run: |
+          pip install -e ".[dev]"
+
+      - name: Lint (ruff)
+        working-directory: gateway
+        run: ruff check .
+
+      - name: Type check (mypy)
+        working-directory: gateway
+        run: mypy app/
+
+      - name: Run tests
+        working-directory: gateway
+        env:
+          DATABASE_URL: postgresql+asyncpg://routewise:testpass@localhost:5432/routewise_test
+          REDIS_URL: redis://localhost:6379/0
+        run: pytest --cov=app --cov-report=term-missing
+
+  build-image:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t routewise-gateway:${{ github.sha }} ./gateway
+
+      # TODO: Push to registry and deploy
+      # - name: Push to registry
+      #   run: ...
+      # - name: Deploy
+      #   run: ...

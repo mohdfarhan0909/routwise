@@ -1,0 +1,50 @@
+# Byte-compiled
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+
+# Test / Coverage
+htmlcov/
+.coverage
+.pytest_cache/
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Node (dashboard)
+node_modules/
+dashboard/build/
+
+# Logs
+*.log
+
+# Archives
+*.zip
+
+# Cache / Tooling
+.ruff_cache/
+dashboard/dist/
+

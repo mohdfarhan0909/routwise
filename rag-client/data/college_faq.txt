@@ -1,0 +1,22 @@
+# Greenfield University — Student FAQ & Academic Guidelines
+
+## Admissions & Enrollment
+Q: When is the course registration deadline for Fall semester?
+A: Course registration for the Fall semester closes on September 15th at 11:59 PM. Late registrations incur a $50 administrative fee.
+
+Q: How many credits can a full-time student register for?
+A: Full-time undergraduate students must register for at least 12 credits and can take up to a maximum of 18 credits per semester without dean approval.
+
+## Library & Computing Facilities
+Q: Where is the main computer lab located and what are the hours?
+A: The central computing lab is located in Turing Hall, Room 204. It is open 24/7 for students with active student ID card access.
+
+Q: How can students access the high-performance computing (HPC) cluster?
+A: Research students and computer science majors can request access to the Ada HPC cluster through their faculty advisor or via the portal at hpc.greenfield.edu.
+
+## Campus Services & Fees
+Q: What is the policy for tuition refunds on course drops?
+A: 100% refund if dropped in Week 1, 80% in Week 2, 50% in Week 3. No refunds after the 3rd week of classes.
+
+Q: Where is the student health center?
+A: The Student Wellness & Health Center is located in Building C across from the campus quadrangle. Open Monday through Friday 8:00 AM to 5:00 PM.
